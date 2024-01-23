@@ -38,6 +38,37 @@ const addClassDiagramPalette = function (sb, expand) {
       80, 26, 'Title', 'Title', null, null, dt + 'title label'
     ),
 
+    sb.addEntry('uml sequence invoke invocation call activation', function()
+		{
+	    	var cell = new mxCell('', new mxGeometry(0, 0, 10, 80), 'html=1;points=[];perimeter=orthogonalPerimeter;');
+	    	cell.vertex = true;
+	    	
+			var edge = new mxCell('dispatch', new mxGeometry(0, 0, 0, 0), 'html=1;verticalAlign=bottom;endArrow=block;dashed=4;entryX=0;entryY=0;');
+			edge.geometry.setTerminalPoint(new mxPoint(-60, 0), true);
+			edge.geometry.relative = true;
+			edge.edge = true;
+			
+			cell.insertEdge(edge, false);
+	
+			return sb.createVertexTemplateFromCells([cell, edge], 10, 80, 'Found Message');
+		}),
+
+    sb.addEntry('uml sequence self call recursion delegation activation', function()
+		{
+	    	var cell = new mxCell('', new mxGeometry(0, 20, 10, 40), 'html=1;points=[];perimeter=orthogonalPerimeter;');
+	    	cell.vertex = true;
+	
+			var edge = new mxCell('self call', new mxGeometry(0, 0, 0, 0), 'edgeStyle=orthogonalEdgeStyle;html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;entryX=1;entryY=0;');
+			edge.geometry.setTerminalPoint(new mxPoint(5, 0), true);
+			edge.geometry.points = [new mxPoint(30, 0)];
+			edge.geometry.relative = true;
+			edge.edge = true;
+			
+			cell.insertEdge(edge, false);
+	
+			return sb.createVertexTemplateFromCells([cell, edge], 10, 60, 'Self Call');
+		}),
+
     sb.addEntry('uml sequence invoke call delegation synchronous invocation activation', function()
 		{
 	    	var cell = new mxCell('', new mxGeometry(0, 0, 10, 80), 'html=1;points=[];perimeter=orthogonalPerimeter;');
@@ -80,6 +111,7 @@ const addClassDiagramPalette = function (sb, expand) {
     sb.createEdgeTemplateEntry('endArrow=open;endSize=12;dashed=2;html=1;', 160, 0, 'acción', 'Acción', null, 'uml generalization extend'),
   ];
 
+  
   sb.addPaletteFunctions('classDiagram', mxResources.get('classDiagram'), expand || false, fns);
 
 };
